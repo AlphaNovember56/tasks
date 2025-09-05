@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Button } from "react-bootstrap";
+import minecraft from "./asset/minecraft.png";
 function App(): React.JSX.Element {
     return (
         <div className="App">
@@ -9,7 +10,7 @@ function App(): React.JSX.Element {
             </header>
             <h1 style={{ backgroundColor: "red" }}>This is a header</h1>
             <img
-                src="https://media.forgecdn.net/attachments/649/789/minceraft.png"
+                src={minecraft}
                 alt="really cool image of minecraft"
                 width={600}
             />
