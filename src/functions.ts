@@ -16,19 +16,20 @@ export function fahrenheitToCelius(temperature: number): number {
 export function add3(first: number, second: number, third: number): number {
     if (first > 0 && second > 0 && third > 0) {
         return first + second + third;
-    } else if (first <= 0 && second <= 0) {
+    } else if (first <= 0 && second <= 0 && third > 0) {
         return third;
-    } else if (first <= 0 && third <= 0) {
+    } else if (first <= 0 && third <= 0 && second > 0) {
         return second;
-    } else if (second <= 0 && third <= 0) {
+    } else if (second <= 0 && third <= 0 && first > 0) {
         return first;
-    } else if (third <= 0) {
+    } else if (third <= 0 && first > 0 && second > 0) {
         return first + second;
-    } else if (second <= 0) {
+    } else if (second <= 0 && first > 0 && third > 0) {
         return first + third;
-    } else if (first <= 0) {
+    } else if (first <= 0 && second > 0 && third > 0) {
         return second + third;
     }
+    return 0;
 }
 
 /**
