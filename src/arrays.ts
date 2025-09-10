@@ -22,7 +22,11 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    let Tostrings = numbers.map((numbers: string): number => parseInt(numbers));
+    let NaNtoZero = Tostrings.map((numbers: number): number =>
+        isNaN(numbers) ? 0 : numbers,
+    );
+    return NaNtoZero;
 }
 
 /**
