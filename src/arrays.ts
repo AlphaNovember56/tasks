@@ -5,6 +5,12 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
+    if (numbers.length === 0) {
+        return [];
+    } else if (numbers.length === 1) {
+        return [numbers[0], numbers[0]];
+    }
+    numbers = [numbers[0], numbers[numbers.length - 1]];
     return numbers;
 }
 
@@ -71,7 +77,6 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
 export function countShortWords(words: string[]): number {
     const new_list = [...words];
     let shorts = new_list.filter((words: string): boolean => words.length < 4);
-
     return shorts.length;
 }
 
@@ -81,7 +86,12 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    const new_colors = [...colors];
+    let RGB = new_colors.every(
+        (colors: string): boolean =>
+            colors === "red" || colors === "blue" || colors === "green",
+    );
+    return RGB;
 }
 
 /**
@@ -92,7 +102,12 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    let toStr = addends.map((addends: number): string =>
+        addends ? addends.toString() : "",
+    );
+    let sum = addends.reduce((total: number, num: number) => (total += num), 0);
+    let equation = sum.toString() + "=" + toStr.join("+");
+    return sum > 0 ? equation : "0=0";
 }
 
 /**
@@ -105,5 +120,22 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const newt = [...values];
+    let index = newt.findIndex((num: number) => num < 0);
+    if (index !== -1) {
+        let sum = newt
+            .splice(0, index)
+            .reduce((total: number, num: number) => (total += num), 0);
+        let result = newt.splice(index, 0, sum);
+        return result;
+    } /*
+    else {
+        let sum = newt.reduce(
+            (total: number, num: number) => (total += num),
+            0,
+        );
+        newt.push(sum);
+        return newt;
+    }*/
+    return newt.push(12);
 }
