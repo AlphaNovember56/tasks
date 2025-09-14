@@ -123,19 +123,12 @@ export function injectPositive(values: number[]): number[] {
     const newt = [...values];
     let index = newt.findIndex((num: number) => num < 0);
     if (index !== -1) {
-        let sum = newt
-            .splice(0, index)
-            .reduce((total: number, num: number) => (total += num), 0);
-        let result = newt.splice(index, 0, sum);
-        return result;
-    } /*
-    else {
-        let sum = newt.reduce(
-            (total: number, num: number) => (total += num),
-            0,
-        );
+        const sum = newt.slice(0, index).reduce((total, num) => total + num, 0);
+        newt.splice(index + 1, 0, sum);
+        return newt;
+    } else {
+        const sum = newt.reduce((total, num) => total + num, 0);
         newt.push(sum);
         return newt;
-    }*/
-    return newt.push(12);
+    }
 }
