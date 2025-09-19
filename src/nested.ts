@@ -38,7 +38,10 @@ export function findQuestion(
     questions: Question[],
     id: number,
 ): Question | null {
-    const notNull = questions.find(
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+    const notNull = copy.find(
         (question: Question): boolean => question.id === id,
     );
     if (!notNull) {
@@ -52,7 +55,14 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+    const removedQuestion = copy.filter(
+        (question: Question): boolean => question.id !== id,
+    );
+
+    return removedQuestion;
 }
 
 /***
