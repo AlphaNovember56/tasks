@@ -1,5 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -212,7 +213,13 @@ export function addNewQuestion(
     name: string,
     type: QuestionType,
 ): Question[] {
-    return [];
+    const newQ = makeBlankQuestion(id, name, type);
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+    copy.push(newQ);
+
+    return copy;
 }
 
 /***
