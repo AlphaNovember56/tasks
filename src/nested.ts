@@ -232,7 +232,17 @@ export function renameQuestionById(
     targetId: number,
     newName: string,
 ): Question[] {
-    return [];
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+
+    const index = copy.findIndex(
+        (question: Question): boolean => question.id === targetId,
+    );
+
+    copy[index].name = newName;
+
+    return copy;
 }
 
 /***
