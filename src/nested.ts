@@ -257,7 +257,19 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType,
 ): Question[] {
-    return [];
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+
+    const index = copy.findIndex(
+        (question: Question): boolean => question.id === targetId,
+    );
+
+    copy[index].type = newQuestionType;
+    copy[index].type !== "multiple_choice_question" ?
+        (copy[index].options = [])
+    :   copy[index].options;
+    return copy;
 }
 
 /**
