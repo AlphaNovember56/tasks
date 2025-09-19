@@ -70,7 +70,11 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+    const names = copy.map((question: Question): string => question.name);
+    return names;
 }
 
 /***
