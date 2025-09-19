@@ -20,7 +20,10 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const nonempty = copy.filter(
         (question: Question): boolean =>
@@ -40,7 +43,10 @@ export function findQuestion(
     id: number,
 ): Question | null {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const notNull = copy.find(
         (question: Question): boolean => question.id === id,
@@ -57,7 +63,10 @@ export function findQuestion(
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const removedQuestion = copy.filter(
         (question: Question): boolean => question.id !== id,
@@ -72,7 +81,10 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  */
 export function getNames(questions: Question[]): string[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const names = copy.map((question: Question): string => question.name);
     return names;
@@ -83,7 +95,10 @@ export function getNames(questions: Question[]): string[] {
  */
 export function sumPoints(questions: Question[]): number {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const points = copy.reduce(
         (points: number, question: Question) => (points += question.points),
@@ -97,7 +112,10 @@ export function sumPoints(questions: Question[]): number {
  */
 export function sumPublishedPoints(questions: Question[]): number {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const published = copy.reduce(
         (total: number, question: Question) =>
@@ -126,7 +144,10 @@ id,name,options,points,published
  */
 export function toCSV(questions: Question[]): string {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     const CSV = copy
         .map(
@@ -153,7 +174,10 @@ export function toCSV(questions: Question[]): string {
  */
 export function makeAnswers(questions: Question[]): Answer[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     interface Answer {
         questionId: number;
@@ -180,7 +204,11 @@ export function makeAnswers(questions: Question[]): Answer[] {
  */
 export function publishAll(questions: Question[]): Question[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question, published: true }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+            published: true,
+        }),
     );
 
     return copy;
@@ -192,7 +220,10 @@ export function publishAll(questions: Question[]): Question[] {
  */
 export function sameType(questions: Question[]): boolean {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
 
     const types = copy.filter(
@@ -215,7 +246,10 @@ export function addNewQuestion(
 ): Question[] {
     const newQ = makeBlankQuestion(id, name, type);
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
     copy.push(newQ);
 
@@ -233,7 +267,10 @@ export function renameQuestionById(
     newName: string,
 ): Question[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
 
     const index = copy.findIndex(
@@ -258,7 +295,10 @@ export function changeQuestionTypeById(
     newQuestionType: QuestionType,
 ): Question[] {
     const copy = questions.map(
-        (question: Question): Question => ({ ...question }),
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
     );
 
     const index = copy.findIndex(
@@ -288,7 +328,21 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    const copy = questions.map(
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options],
+        }),
+    );
+    const index = copy.findIndex(
+        (question: Question): boolean => question.id === targetId,
+    );
+
+    targetOptionIndex === -1 ?
+        copy[index].options.push(newOption)
+    :   (copy[index].options[targetOptionIndex] = newOption);
+
+    return copy;
 }
 
 /***
