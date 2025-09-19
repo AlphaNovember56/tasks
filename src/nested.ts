@@ -190,7 +190,15 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    const copy = questions.map(
+        (question: Question): Question => ({ ...question }),
+    );
+
+    const types = copy.filter(
+        (question: Question): boolean =>
+            question.type === "short_answer_question",
+    );
+    return types.length === copy.length || types.length === 0;
 }
 
 /***
