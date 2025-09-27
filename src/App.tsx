@@ -3,6 +3,7 @@ import "./App.css";
 import { RevealAnswer } from "./components/RevealAnswer";
 import { StartAttempt } from "./components/StartAttempt";
 import { TwoDice } from "./components/TwoDice";
+import { ChangeType } from "./components/ChangeType";
 import { CycleHoliday } from "./components/CycleHoliday";
 import { Counter } from "./components/Counter";
 import { DoubleHalf } from "./bad-components/DoubleHalf";
@@ -17,7 +18,7 @@ function App(): React.JSX.Element {
                 UD CISC275 with React Hooks and TypeScript
             </header>
             <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
+            <DoubleHalf></DoubleHalf>
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
