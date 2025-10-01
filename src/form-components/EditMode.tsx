@@ -28,23 +28,26 @@ export function EditMode(): React.JSX.Element {
                 checked={editable}
                 onChange={updateEdits}
             />
-            <Form.Check
-                type="checkbox"
-                id="Is_Student"
-                label="Are you a student?"
-                checked={Student}
-                onChange={updateStudent}
-            />
+            {editable && (
+                <div>
+                    <Form.Check
+                        type="checkbox"
+                        id="Is_Student"
+                        label="Are you a student?"
+                        checked={Student}
+                        onChange={updateStudent}
+                    />
 
-            <Form.Group controlId="formInformation">
-                <Form.Label>Information</Form.Label>
-                <Form.Control
-                    value={info}
-                    onChange={updateInfo}
-                    disabled={!editable}
-                />
-            </Form.Group>
-
+                    <Form.Group controlId="formInformation">
+                        <Form.Label>Information</Form.Label>
+                        <Form.Control
+                            value={info}
+                            onChange={updateInfo}
+                            disabled={!editable}
+                        />
+                    </Form.Group>
+                </div>
+            )}
             <div>
                 {!Student ? info + " is not a student" : info + " is a student"}
             </div>
